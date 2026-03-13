@@ -20,7 +20,7 @@ def enrich_redis_geohash(restaurants_in_dfw, redis_connection):
     for node in restaurants_in_dfw['elements']:
         lat = node.get('lat','lat_not_available')
         lon = node.get('lon','long_not_available')
-        name = node.get('name','name_not_available')
+        name = node.get('tags','tags_not_available').get('name','name_not_available')
         pipe.geoadd('restaurant', [lon, lat, name])
         count += 1
 
